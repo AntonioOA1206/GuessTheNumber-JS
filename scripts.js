@@ -54,7 +54,7 @@ buttonReiniciar.addEventListener("click", function(event) {
     //Lo mostramos por consola por la misma razon que antes
     console.log("Numero nuevo: " + numeroAleatorio);
     //Avisamos que el numero secreto ha sido cambiado
-    alert("Numero cambiado :D");4
+    alert("Numero cambiado :D");
     //Limpiamos el input
     inputNumber.value = "";
 });
