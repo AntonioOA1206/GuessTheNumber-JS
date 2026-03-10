@@ -18,6 +18,9 @@ let buttonEnviar = document.querySelector("#boton1");
 //Nos quedamos con el boton2
 let buttonReiniciar = document.querySelector("#boton2");
 
+//Nos quedamos con el titulo
+let cambiar = document.querySelector("#titulo")
+
 //Creamos un evento tipo click para el boton1
 buttonEnviar.addEventListener("click", function(event) {
     //Si se introduce algo en el input entra en el if, en caso contrario no hace nada
@@ -28,16 +31,22 @@ buttonEnviar.addEventListener("click", function(event) {
             alert("GANASTE");
             alert("Efectivamente " + inputNumber.value + " es igual a " + numeroAleatorio);
             inputNumber.value = "";
+            //Cambiamos el titulo a color verde tambien
+            cambiar.style.color = "green";
         //Si el numero introducido es mayor que el numero aleatorio entonces...
         } else if (Number(inputNumber.value) > numeroAleatorio) {
             //Mostramos mensaje diciendo eso como pista y limpiamos el input
             alert("Este numero es mayor al que tienes que adivinar");
             inputNumber.value = "";
+            //Cambiamos el titulo a color azul tambien
+            cambiar.style.color = "blue";
         //Si el numero introducido es menor que el numero aleatorio entonces...
         } else if (Number(inputNumber.value) < numeroAleatorio) {
             //Mostramos mensaje diciendo eso como pista y limpiamos el input
             alert("Este numero es menor al que tienes que adivinar");
             inputNumber.value = "";
+            //Cambiamos el titulo a rojo verde tambien
+            cambiar.style.color = "red";
         //Si no es nada de eso (seguramente una letra, signo, etc.)...
         } else {
             //Recordamos amablemente que solo se pueden introducir numeros y limpiamos el input
