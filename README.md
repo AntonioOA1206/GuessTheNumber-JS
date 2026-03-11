@@ -59,7 +59,6 @@ git clone https://github.com/tu-usuario/Numberdle.git
 
 ## Mejoras futuras
 
-- Validación más robusta de la entrada (solo números válidos).  
 - Contador de intentos.  
 - Mostrar pistas y resultados en pantalla en lugar de usar `alert()`.  
 - Mejorar el estilo con CSS avanzado o animaciones.  
