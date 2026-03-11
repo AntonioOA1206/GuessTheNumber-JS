@@ -59,7 +59,6 @@ buttonEnviar.addEventListener("click", function(event) {
     }
 });
 
-
 //Recorremos el array
 ambosBotones.forEach (botonA => {
     //Para cada boton creamos un evento de tipo mouseenter para que cuanto el raton se ponga sobre el boton el texto de este cambie a azul
@@ -83,4 +82,9 @@ buttonReiniciar.addEventListener("click", function(event) {
     alert("Numero cambiado :D");
     //Limpiamos el input
     inputNumber.value = "";
+});
+
+//Cuando la pagina se carga saludamos al usuario
+window.addEventListener ("load", function(event) { //Con unload seria para si se cierra o cambia de pagina
+    alert("Bienvenido a mi pagina Web");
 });
