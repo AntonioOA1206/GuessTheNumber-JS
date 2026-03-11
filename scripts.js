@@ -18,6 +18,9 @@ let buttonEnviar = document.querySelector("#boton1");
 //Nos quedamos con el boton2
 let buttonReiniciar = document.querySelector("#boton2");
 
+//Nos quedamos con ambos botones
+let ambosBotones = document.querySelectorAll("button");
+
 //Nos quedamos con el titulo
 let cambiar = document.querySelector("#titulo")
 
@@ -54,6 +57,20 @@ buttonEnviar.addEventListener("click", function(event) {
             inputNumber.value = "";
         }
     }
+});
+
+
+//Recorremos el array
+ambosBotones.forEach (botonA => {
+    //Para cada boton creamos un evento de tipo mouseenter para que cuanto el raton se ponga sobre el boton el texto de este cambie a azul
+    botonA.addEventListener("mouseenter", function(event) {
+        botonA.style.color = "blue";                             
+    });
+
+    //Para cada boton creamos un evento de tipo mouseleave para que cuanto el raton salga de encima del boton el texto de este cambie a azul
+    botonA.addEventListener("mouseleave", function(event) {
+        botonA.style.color = "black";                             
+    });
 });
 
 //Creamos un evento tipo click para el boton2
