@@ -27,7 +27,6 @@ Numberdle/
 ├─ mystyle.css      # Estilos del juego
 ├─ scripts.js       # Lógica del juego en JavaScript
 └─ imagenes/
-    └─ favicon.ico  # Icono del proyecto
 ```
 
 ---
@@ -57,10 +56,17 @@ git clone https://github.com/tu-usuario/Numberdle.git
 
 ---
 
-## Mejoras futuras
+## Changelog
 
-- Contador de intentos.  
-- Mostrar pistas y resultados en pantalla en lugar de usar `alert()`.  
-- Mejorar el estilo con CSS avanzado o animaciones.  
-- Versión responsive para móviles.
+### [1.1] - 2026-03-17
+Añadido
+- Pistas mostradas en pantalla.
+- Imágenes para indicar si el número es mayor o menor.
+
+Cambiado
+- Eliminados los `alert()` del sistema de pistas.
+
+### [1.0] - 2026-03-04
+Añadido
+- Primera versión del juego.
 
