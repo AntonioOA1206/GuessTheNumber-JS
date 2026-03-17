@@ -58,6 +58,11 @@ git clone https://github.com/tu-usuario/Numberdle.git
 
 ## Changelog
 
+### [1.2] - 2026-03-17
+Añadido
+- Contador de intentos.
+- Arreglados algunos errores.
+  
 ### [1.1] - 2026-03-17
 Añadido
 - Pistas mostradas en pantalla.
