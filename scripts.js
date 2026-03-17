@@ -52,6 +52,8 @@ buttonEnviar.addEventListener("click", function(event) {
             image.src = "./imagenes/sonrisa.png";
             //Cambiamos el titulo a color verde tambien
             cambiar.style.color = "green";
+            //Deshabilitar el boton de enviar para no poder seguir jugando
+            buttonEnviar.disabled = true;
         //Si el numero introducido es mayor que el numero aleatorio entonces...
         } else if (Number(inputNumber.value) > numeroAleatorio) {
             //Mostramos mensaje diciendo eso como pista
