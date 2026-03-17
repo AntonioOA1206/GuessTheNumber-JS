@@ -32,6 +32,7 @@ let pista = document.querySelector("#pista");
 
 //Nos quedamos con el numero de intentos (por defecto 0)
 let tries = document.querySelector("#intentos span");
+
 //Creamos una variable que es la que vamos a usar para contar los intentos
 let intento = 0;
 
@@ -78,13 +79,21 @@ buttonEnviar.addEventListener("click", function(event) {
             inputNumber.value = "";
         }
         
+        //Si el numero de intentos es menor de 10
         if (intento < 10) {
             //Aumentamos la cantidad de intentos
             intento++;
             //Lo mostramos
             tries.innerText = intento;
+        //Sino...
         } else {
-            alert("Ya no tienes mas intentos. Perdiste :(")
+            //Lo avisamos con una alerta
+            alert("Ya no tienes mas intentos. Perdiste :(");
+            //Cambiamos la cara a triste
+            image.src = "./imagenes/triste.jpg";
+            //Borramos la pista
+            pista.innerText = ""
+            //Quitamos la funcion del boton para que el usuario no pueda continuar jugando
             buttonEnviar.disabled = true;
         }
     }
