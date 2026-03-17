@@ -120,6 +120,15 @@ buttonReiniciar.addEventListener("click", function(event) {
     console.log("Numero nuevo: " + numeroAleatorio);
     //Avisamos que el numero secreto ha sido cambiado
     alert("Numero cambiado :D");
+    //Cambiamos la imagen a neutra
+    image.src = "./imagenes/igual.png";
+    //Establecemos la pista por defecto
+    pista.innerText = "Esperando a recibir un numero :)"
+    //Quitamos la funcion del boton para que el usuario no pueda continuar jugando
+    buttonEnviar.disabled = false;
+    //Establecemos el numero de intentos de nuevo a 0 y lo mostramos
+    intento = 0;
+    tries.innerText = intento;
     //Limpiamos el input
     inputNumber.value = "";
 });
