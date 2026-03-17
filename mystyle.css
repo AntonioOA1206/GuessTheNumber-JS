@@ -1,3 +1,11 @@
+img {
+    border: 5px solid black;
+}
+
+span {
+    font-weight: bold;
+}
+
 #todo {
     text-align: center;
 }

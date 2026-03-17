@@ -22,7 +22,13 @@ let buttonReiniciar = document.querySelector("#boton2");
 let ambosBotones = document.querySelectorAll("button");
 
 //Nos quedamos con el titulo
-let cambiar = document.querySelector("#titulo")
+let cambiar = document.querySelector("#titulo");
+
+//Nos quedamos con la imagen
+let image = document.querySelector("#imagen");
+
+//Nos quedamos con el parrafo de la pista
+let pista = document.querySelector("#pista");
 
 //Creamos un evento tipo click para el boton1
 buttonEnviar.addEventListener("click", function(event) {
@@ -34,19 +40,29 @@ buttonEnviar.addEventListener("click", function(event) {
             alert("GANASTE");
             alert("Efectivamente " + inputNumber.value + " es igual a " + numeroAleatorio);
             inputNumber.value = "";
+            //Felicitamos al usuario :D
+            pista.innerHTML = "<span>Felicidades :D</span>";
+            //Cambiamos la imagen a una carita sonriente
+            image.src = "./imagenes/sonrisa.png";
             //Cambiamos el titulo a color verde tambien
             cambiar.style.color = "green";
         //Si el numero introducido es mayor que el numero aleatorio entonces...
         } else if (Number(inputNumber.value) > numeroAleatorio) {
-            //Mostramos mensaje diciendo eso como pista y limpiamos el input
-            alert("Este numero es mayor al que tienes que adivinar");
+            //Mostramos mensaje diciendo eso como pista
+            pista.innerHTML = "Este numero es <span>mayor</span> al que tienes que adivinar. Intenta con uno <span>menor</span>.";
+            //Cambiamos la imagen a una flecha hacia abajo
+            image.src = "./imagenes/abajo.jpg";
+            //Limpiamos el input
             inputNumber.value = "";
             //Cambiamos el titulo a color azul tambien
             cambiar.style.color = "blue";
         //Si el numero introducido es menor que el numero aleatorio entonces...
         } else if (Number(inputNumber.value) < numeroAleatorio) {
-            //Mostramos mensaje diciendo eso como pista y limpiamos el input
-            alert("Este numero es menor al que tienes que adivinar");
+            //Mostramos mensaje diciendo eso como pista
+            pista.innerHTML = "Este numero es <span>menor</span> al que tienes que adivinar. Intenta con uno <span>mayor</span>.";
+            //Cambiamos la imagen a una flecha hacia arriba
+            image.src = "./imagenes/arriba.jpg";
+            //Limpiamos el input
             inputNumber.value = "";
             //Cambiamos el titulo a rojo verde tambien
             cambiar.style.color = "red";
