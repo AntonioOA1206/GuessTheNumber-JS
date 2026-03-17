@@ -30,6 +30,11 @@ let image = document.querySelector("#imagen");
 //Nos quedamos con el parrafo de la pista
 let pista = document.querySelector("#pista");
 
+//Nos quedamos con el numero de intentos (por defecto 0)
+let tries = document.querySelector("#intentos span");
+//Creamos una variable que es la que vamos a usar para contar los intentos
+let intento = 0;
+
 //Creamos un evento tipo click para el boton1
 buttonEnviar.addEventListener("click", function(event) {
     //Si se introduce algo en el input entra en el if, en caso contrario no hace nada
@@ -73,6 +78,10 @@ buttonEnviar.addEventListener("click", function(event) {
             inputNumber.value = "";
         }
     }
+    //Aumentamos la cantidad de intentos
+    intento++;
+    //Lo mostramos
+    tries.innerText = intento;
 });
 
 //Recorremos el array
