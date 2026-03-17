@@ -77,11 +77,17 @@ buttonEnviar.addEventListener("click", function(event) {
             alert("¿Acaso no sabes lo que es un numero o que?");
             inputNumber.value = "";
         }
+        
+        if (intento < 10) {
+            //Aumentamos la cantidad de intentos
+            intento++;
+            //Lo mostramos
+            tries.innerText = intento;
+        } else {
+            alert("Ya no tienes mas intentos. Perdiste :(")
+            buttonEnviar.disabled = true;
+        }
     }
-    //Aumentamos la cantidad de intentos
-    intento++;
-    //Lo mostramos
-    tries.innerText = intento;
 });
 
 //Recorremos el array
