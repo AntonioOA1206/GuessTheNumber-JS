@@ -30,6 +30,9 @@ let image = document.querySelector("#imagen");
 //Nos quedamos con el parrafo de la pista
 let pista = document.querySelector("#pista");
 
+//Nos quedamos con el parrafo donde vamos a introducir el recordatorio de los numeros
+let npista = document.querySelector("#numeros");
+
 //Nos quedamos con el numero de intentos (por defecto 0)
 let tries = document.querySelector("#intentos span");
 
@@ -42,9 +45,12 @@ buttonEnviar.addEventListener("click", function(event) {
     if (Number(inputNumber.value) != "") {
         //Si el numero introducido es igual y del mismo tipo que el numero aleatorio entonces...
         if (Number(inputNumber.value) === numeroAleatorio) {
-            //Mostramos que has ganado y limpiamos el input
+            //Mostramos que has ganado
             alert("GANASTE");
             alert("Efectivamente " + inputNumber.value + " es igual a " + numeroAleatorio);
+            //Añadimos el numero introducido como recordatorio
+            npista.innerHTML += "<span class='fin'>" + inputNumber.value + "</span>" + " ";
+            //Limpiamos el input
             inputNumber.value = "";
             //Felicitamos al usuario :D
             pista.innerHTML = "<span>Felicidades :D</span>";
@@ -60,6 +66,8 @@ buttonEnviar.addEventListener("click", function(event) {
             pista.innerHTML = "Este numero es <span>mayor</span> al que tienes que adivinar. Intenta con uno <span>menor</span>.";
             //Cambiamos la imagen a una flecha hacia abajo
             image.src = "./imagenes/abajo.jpg";
+            //Añadimos el numero introducido como recordatorio
+            npista.innerHTML += "<span class='mayor'>" + inputNumber.value + "</span>" + " ";
             //Limpiamos el input
             inputNumber.value = "";
             //Cambiamos el titulo a color azul tambien
@@ -70,6 +78,8 @@ buttonEnviar.addEventListener("click", function(event) {
             pista.innerHTML = "Este numero es <span>menor</span> al que tienes que adivinar. Intenta con uno <span>mayor</span>.";
             //Cambiamos la imagen a una flecha hacia arriba
             image.src = "./imagenes/arriba.jpg";
+            //Añadimos el numero introducido como recordatorio
+            npista.innerHTML += "<span class='menor'>" + inputNumber.value + "</span>" + " ";
             //Limpiamos el input
             inputNumber.value = "";
             //Cambiamos el titulo a rojo verde tambien
@@ -131,7 +141,7 @@ buttonReiniciar.addEventListener("click", function(event) {
     //Establecemos el numero de intentos de nuevo a 0 y lo mostramos
     intento = 0;
     tries.innerText = intento;
-    //Cambiamos el titulo a color verde tambien
+    //Cambiamos el titulo a color negro tambien
     cambiar.style.color = "black";
     //Limpiamos el input
     inputNumber.value = "";

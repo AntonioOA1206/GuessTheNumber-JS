@@ -6,10 +6,22 @@ span {
     font-weight: bold;
 }
 
+.parrafo {
+    font-style: oblique;
+}
+
 #todo {
     text-align: center;
 }
 
-.parrafo {
-    font-style: oblique;
+.fin {
+    color: green;
+}
+
+.mayor {
+    color: blue;
+}
+
+.menor {
+    color: red;
 }
