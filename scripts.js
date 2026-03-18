@@ -131,6 +131,8 @@ buttonReiniciar.addEventListener("click", function(event) {
     //Establecemos el numero de intentos de nuevo a 0 y lo mostramos
     intento = 0;
     tries.innerText = intento;
+    //Cambiamos el titulo a color verde tambien
+    cambiar.style.color = "black";
     //Limpiamos el input
     inputNumber.value = "";
 });
