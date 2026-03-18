@@ -30,8 +30,9 @@ let image = document.querySelector("#imagen");
 //Nos quedamos con el parrafo de la pista
 let pista = document.querySelector("#pista");
 
-//Nos quedamos con el parrafo donde vamos a introducir el recordatorio de los numeros
-let npista = document.querySelector("#numeros");
+//Nos quedamos con el contenido del parrafo donde vamos a introducir el recordatorio de los numeros
+let texto;
+let numeros;
 
 //Nos quedamos con el numero de intentos (por defecto 0)
 let tries = document.querySelector("#intentos span");
@@ -39,8 +40,44 @@ let tries = document.querySelector("#intentos span");
 //Creamos una variable que es la que vamos a usar para contar los intentos
 let intento = 0;
 
+npista = document.querySelector("#numeros");
+
+let historialIntentos = [];
+
+
 //Creamos un evento tipo click para el boton1
 buttonEnviar.addEventListener("click", function(event) {
+    
+    texto = npista.innerText;
+    historialIntentos = [];
+    npista.innerHTML = "";
+    
+    /*
+    .split lo que hace es un cut usando como separador los espacios y convirtiendo el resultado en un array
+    .filter(num => num !== "") ignora las cadenas vacias
+    .map recorre el array y transforma cada elemento
+    */
+    numeros = texto.split(" ").filter(num => num !== "").map(num => Number(num));
+
+    historialIntentos.push(inputNumber.value);
+    
+    numeros.forEach(num => {
+        historialIntentos.push(num);
+    });
+
+    historialIntentos.sort((a, b) => a - b); // de menor a mayor
+
+    historialIntentos.forEach(num => {
+        if (num === numeroAleatorio) {
+            npista.innerHTML += "<span class='fin'>" + num + "</span>" + " ";
+        } else if (num > numeroAleatorio) {
+            npista.innerHTML += "<span class='mayor'>" + num + "</span>" + " ";
+        } else if (num < numeroAleatorio) {
+            npista.innerHTML += "<span class='menor'>" + num + "</span>" + " ";
+        }
+    });
+
+
     //Si se introduce algo en el input entra en el if, en caso contrario no hace nada
     if (Number(inputNumber.value) != "") {
         //Si el numero introducido es igual y del mismo tipo que el numero aleatorio entonces...
@@ -48,8 +85,6 @@ buttonEnviar.addEventListener("click", function(event) {
             //Mostramos que has ganado
             alert("GANASTE");
             alert("Efectivamente " + inputNumber.value + " es igual a " + numeroAleatorio);
-            //Añadimos el numero introducido como recordatorio
-            npista.innerHTML += "<span class='fin'>" + inputNumber.value + "</span>" + " ";
             //Limpiamos el input
             inputNumber.value = "";
             //Felicitamos al usuario :D
@@ -66,8 +101,6 @@ buttonEnviar.addEventListener("click", function(event) {
             pista.innerHTML = "Este numero es <span>mayor</span> al que tienes que adivinar. Intenta con uno <span>menor</span>.";
             //Cambiamos la imagen a una flecha hacia abajo
             image.src = "./imagenes/abajo.jpg";
-            //Añadimos el numero introducido como recordatorio
-            npista.innerHTML += "<span class='mayor'>" + inputNumber.value + "</span>" + " ";
             //Limpiamos el input
             inputNumber.value = "";
             //Cambiamos el titulo a color azul tambien
@@ -78,8 +111,6 @@ buttonEnviar.addEventListener("click", function(event) {
             pista.innerHTML = "Este numero es <span>menor</span> al que tienes que adivinar. Intenta con uno <span>mayor</span>.";
             //Cambiamos la imagen a una flecha hacia arriba
             image.src = "./imagenes/arriba.jpg";
-            //Añadimos el numero introducido como recordatorio
-            npista.innerHTML += "<span class='menor'>" + inputNumber.value + "</span>" + " ";
             //Limpiamos el input
             inputNumber.value = "";
             //Cambiamos el titulo a rojo verde tambien
@@ -143,6 +174,9 @@ buttonReiniciar.addEventListener("click", function(event) {
     tries.innerText = intento;
     //Cambiamos el titulo a color negro tambien
     cambiar.style.color = "black";
+
+    npista.innerHTML = "";
+
     //Limpiamos el input
     inputNumber.value = "";
 });
