@@ -63,6 +63,8 @@ buttonEnviar.addEventListener("click", function(event) {
     if (Number(inputNumber.value) != "") {
         if (Number(inputNumber.value) > 100 || Number(inputNumber.value) < 0) {
             alert("Este numero es menor que 0 o mayor que 100. ¿Podrias leer bien las instrucciones?");
+            //Limpiamos el input
+            inputNumber.value = "";
         } else {
             //Nos quedamos con el texto del parrafo de numeros recordatorios
             texto = npista.innerText;
