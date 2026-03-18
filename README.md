@@ -58,6 +58,11 @@ git clone https://github.com/tu-usuario/Numberdle.git
 
 ## Changelog
 
+### [1.3] - 2026-03-18
+Añadido
+- Pista para recordar los numeros introducidos.
+- Arreglados algunos errores.
+  
 ### [1.2] - 2026-03-17
 Añadido
 - Contador de intentos.
