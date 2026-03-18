@@ -30,7 +30,7 @@ let image = document.querySelector("#imagen");
 //Nos quedamos con el parrafo de la pista
 let pista = document.querySelector("#pista");
 
-//Nos quedamos con el contenido del parrafo donde vamos a introducir el recordatorio de los numeros
+//Creamos dos variables que usaremos posteriormente
 let texto;
 let numeros;
 
@@ -40,38 +40,55 @@ let tries = document.querySelector("#intentos span");
 //Creamos una variable que es la que vamos a usar para contar los intentos
 let intento = 0;
 
+//Nos quedamos con el parrafo de los numeros recordatorios
 npista = document.querySelector("#numeros");
 
+//Creamos el array (vacio) que vamos a usar
 let historialIntentos = [];
 
 
 //Creamos un evento tipo click para el boton1
 buttonEnviar.addEventListener("click", function(event) {
     
+    //Nos quedamos con el texto del parrafo de numeros recordatorios
     texto = npista.innerText;
+    //Cada que se pulse el boton se limpia el array
     historialIntentos = [];
+    //Se limpia el parrafo de numeros recordatorios
     npista.innerHTML = "";
-    
+    //Añadimos al array el numero nuevo introducido
+    historialIntentos.push(Number(inputNumber.value));
     /*
     .split lo que hace es un cut usando como separador los espacios y convirtiendo el resultado en un array
     .filter(num => num !== "") ignora las cadenas vacias
     .map recorre el array y transforma cada elemento
     */
     numeros = texto.split(" ").filter(num => num !== "").map(num => Number(num));
-
-    historialIntentos.push(inputNumber.value);
     
+    //Cada numero lo añadimos al array
     numeros.forEach(num => {
         historialIntentos.push(num);
     });
 
+    /*
+    .sort sirve para ordenar
+    a y b son los parametros que necesita la funcion
+    En este caso:
+        - Si a - b < 0 la a se pone tras la b
+        - Si a - b > 0 la b se pone tras la a
+        - Si a - b = 0 no se toca la posicion
+    */
     historialIntentos.sort((a, b) => a - b); // de menor a mayor
 
+    //Por cada elemento del array (ordenado) lo añade al parrafo de numeros recordatorios
     historialIntentos.forEach(num => {
+        //Si ganas lo muestra con color verde
         if (num === numeroAleatorio) {
             npista.innerHTML += "<span class='fin'>" + num + "</span>" + " ";
+        //Si el que tu has puesto es mayor lo muestra con color azul
         } else if (num > numeroAleatorio) {
             npista.innerHTML += "<span class='mayor'>" + num + "</span>" + " ";
+        //Si el que tu has puesto es menor lo muestra con color rojo
         } else if (num < numeroAleatorio) {
             npista.innerHTML += "<span class='menor'>" + num + "</span>" + " ";
         }
