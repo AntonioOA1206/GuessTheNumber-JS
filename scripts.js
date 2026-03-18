@@ -1,3 +1,13 @@
+//Funcion para mostrar los numeros menores que usaremos posteriormente
+function mostrarMenores() {
+    //Por cada elemento del array (ordenado) lo añade al parrafo de numeros recordatorios
+    historialIntentos.forEach(num => {
+        if (num < numeroAleatorio) {
+            npista.innerHTML += "<span class='menor'>" + num + "</span>" + " ";
+        }
+    });
+}
+
 /* 
 Genera un número aleatorio entre 0 (incluyendolo) y 1 (sin incluirlo) incluyendo decimales como 0.1 o 0.9
 Multimiplicamos ese numero por 100 obteniendo un numero entre 0 y 99 (con decimales)
@@ -80,17 +90,36 @@ buttonEnviar.addEventListener("click", function(event) {
     */
     historialIntentos.sort((a, b) => a - b); // de menor a mayor
 
-    //Por cada elemento del array (ordenado) lo añade al parrafo de numeros recordatorios
+    //Llamamos a la funcion para que se muestren primero los numeros menores
+    mostrarMenores();
+
+    //Creamo variable booleana para comprobar si ya se ha mostrado la x o no
+    let estado = false;
+
+    //Para todos los elementos del array
     historialIntentos.forEach(num => {
-        //Si ganas lo muestra con color verde
+        //Si ganas...
         if (num === numeroAleatorio) {
+            //Limpia el parrafo de numeros recordatorios
+            npista.innerText = "";
+            //Mostramos primero los numeros menores
+            mostrarMenores();
+            //En vez de la x ahora mostramos el numero que habia que adivinar en verde
             npista.innerHTML += "<span class='fin'>" + num + "</span>" + " ";
-        //Si el que tu has puesto es mayor lo muestra con color azul
-        } else if (num > numeroAleatorio) {
+        //Si el que tu has no coincide con el que hay que adivinar y la x aun no se ha escrito...
+        } else if (num != numeroAleatorio && !estado) {
+            //Ponemos el estado en true para que no se muestren mas de una x
+            estado = true;
+            //Mostramos la x en negrita y negro
+            npista.innerHTML += "<span>" + "x" + "</span>" + " ";
+        }
+    });
+
+    //Para todos los elementos del array
+    historialIntentos.forEach(num => {
+        //Si son mayores al que hay que adivinar mostramos tras la x con color azul
+        if (num > numeroAleatorio) {
             npista.innerHTML += "<span class='mayor'>" + num + "</span>" + " ";
-        //Si el que tu has puesto es menor lo muestra con color rojo
-        } else if (num < numeroAleatorio) {
-            npista.innerHTML += "<span class='menor'>" + num + "</span>" + " ";
         }
     });
 
