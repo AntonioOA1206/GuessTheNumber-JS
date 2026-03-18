@@ -59,131 +59,134 @@ let historialIntentos = [];
 
 //Creamos un evento tipo click para el boton1
 buttonEnviar.addEventListener("click", function(event) {
-    
-    //Nos quedamos con el texto del parrafo de numeros recordatorios
-    texto = npista.innerText;
-    //Cada que se pulse el boton se limpia el array
-    historialIntentos = [];
-    //Se limpia el parrafo de numeros recordatorios
-    npista.innerHTML = "";
-    //Añadimos al array el numero nuevo introducido
-    historialIntentos.push(Number(inputNumber.value));
-    /*
-    .split lo que hace es un cut usando como separador los espacios y convirtiendo el resultado en un array
-    .filter(num => num !== "") ignora las cadenas vacias
-    .map recorre el array y transforma cada elemento
-    */
-    numeros = texto.split(" ").filter(num => num !== "").map(num => Number(num));
-    
-    //Cada numero lo añadimos al array
-    numeros.forEach(num => {
-        historialIntentos.push(num);
-    });
-
-    /*
-    .sort sirve para ordenar
-    a y b son los parametros que necesita la funcion
-    En este caso:
-        - Si a - b < 0 la a se pone tras la b
-        - Si a - b > 0 la b se pone tras la a
-        - Si a - b = 0 no se toca la posicion
-    */
-    historialIntentos.sort((a, b) => a - b); // de menor a mayor
-
-    //Llamamos a la funcion para que se muestren primero los numeros menores
-    mostrarMenores();
-
-    //Creamo variable booleana para comprobar si ya se ha mostrado la x o no
-    let estado = false;
-
-    //Para todos los elementos del array
-    historialIntentos.forEach(num => {
-        //Si ganas...
-        if (num === numeroAleatorio) {
-            //Limpia el parrafo de numeros recordatorios
-            npista.innerText = "";
-            //Mostramos primero los numeros menores
-            mostrarMenores();
-            //En vez de la x ahora mostramos el numero que habia que adivinar en verde
-            npista.innerHTML += "<span class='fin'>" + num + "</span>" + " ";
-        //Si el que tu has no coincide con el que hay que adivinar y la x aun no se ha escrito...
-        } else if (num != numeroAleatorio && !estado) {
-            //Ponemos el estado en true para que no se muestren mas de una x
-            estado = true;
-            //Mostramos la x en negrita y negro
-            npista.innerHTML += "<span>" + "x" + "</span>" + " ";
-        }
-    });
-
-    //Para todos los elementos del array
-    historialIntentos.forEach(num => {
-        //Si son mayores al que hay que adivinar mostramos tras la x con color azul
-        if (num > numeroAleatorio) {
-            npista.innerHTML += "<span class='mayor'>" + num + "</span>" + " ";
-        }
-    });
-
-
     //Si se introduce algo en el input entra en el if, en caso contrario no hace nada
     if (Number(inputNumber.value) != "") {
-        //Si el numero introducido es igual y del mismo tipo que el numero aleatorio entonces...
-        if (Number(inputNumber.value) === numeroAleatorio) {
-            //Mostramos que has ganado
-            alert("GANASTE");
-            alert("Efectivamente " + inputNumber.value + " es igual a " + numeroAleatorio);
-            //Limpiamos el input
-            inputNumber.value = "";
-            //Felicitamos al usuario :D
-            pista.innerHTML = "<span>Felicidades :D</span>";
-            //Cambiamos la imagen a una carita sonriente
-            image.src = "./imagenes/sonrisa.png";
-            //Cambiamos el titulo a color verde tambien
-            cambiar.style.color = "green";
-            //Deshabilitar el boton de enviar para no poder seguir jugando
-            buttonEnviar.disabled = true;
-        //Si el numero introducido es mayor que el numero aleatorio entonces...
-        } else if (Number(inputNumber.value) > numeroAleatorio) {
-            //Mostramos mensaje diciendo eso como pista
-            pista.innerHTML = "Este numero es <span>mayor</span> al que tienes que adivinar. Intenta con uno <span>menor</span>.";
-            //Cambiamos la imagen a una flecha hacia abajo
-            image.src = "./imagenes/abajo.jpg";
-            //Limpiamos el input
-            inputNumber.value = "";
-            //Cambiamos el titulo a color azul tambien
-            cambiar.style.color = "blue";
-        //Si el numero introducido es menor que el numero aleatorio entonces...
-        } else if (Number(inputNumber.value) < numeroAleatorio) {
-            //Mostramos mensaje diciendo eso como pista
-            pista.innerHTML = "Este numero es <span>menor</span> al que tienes que adivinar. Intenta con uno <span>mayor</span>.";
-            //Cambiamos la imagen a una flecha hacia arriba
-            image.src = "./imagenes/arriba.jpg";
-            //Limpiamos el input
-            inputNumber.value = "";
-            //Cambiamos el titulo a rojo verde tambien
-            cambiar.style.color = "red";
-        //Si no es nada de eso (seguramente una letra, signo, etc.)...
+        if (Number(inputNumber.value) > 100 || Number(inputNumber.value) < 0) {
+            alert("Este numero es menor que 0 o mayor que 100. ¿Podrias leer bien las instrucciones?");
         } else {
-            //Recordamos amablemente que solo se pueden introducir numeros y limpiamos el input
-            alert("¿Acaso no sabes lo que es un numero o que?");
-            inputNumber.value = "";
-        }
-        
-        //Si el numero de intentos es menor de 10
-        if (intento < 10) {
-            //Aumentamos la cantidad de intentos
-            intento++;
-            //Lo mostramos
-            tries.innerText = intento;
-        //Sino...
-        } else {
-            //Lo avisamos con una alerta
-            alert("Ya no tienes mas intentos. Perdiste :(");
-            //Cambiamos la cara a triste
-            image.src = "./imagenes/triste.jpg";
-            //Borramos la pista
-            pista.innerText = ""
-            //Quitamos la funcion del boton para que el usuario no pueda continuar jugando
-            buttonEnviar.disabled = true;
+            //Nos quedamos con el texto del parrafo de numeros recordatorios
+            texto = npista.innerText;
+            //Cada que se pulse el boton se limpia el array
+            historialIntentos = [];
+            //Se limpia el parrafo de numeros recordatorios
+            npista.innerHTML = "";
+            //Añadimos al array el numero nuevo introducido
+            historialIntentos.push(Number(inputNumber.value));
+            /*
+            .split lo que hace es un cut usando como separador los espacios y convirtiendo el resultado en un array
+            .filter(num => num !== "") ignora las cadenas vacias
+            .map recorre el array y transforma cada elemento
+            */
+            numeros = texto.split(" ").filter(num => num !== "").map(num => Number(num));
+            
+            //Cada numero lo añadimos al array
+            numeros.forEach(num => {
+                historialIntentos.push(num);
+            });
+
+            /*
+            .sort sirve para ordenar
+            a y b son los parametros que necesita la funcion
+            En este caso:
+                - Si a - b < 0 la a se pone tras la b
+                - Si a - b > 0 la b se pone tras la a
+                - Si a - b = 0 no se toca la posicion
+            */
+            historialIntentos.sort((a, b) => a - b); // de menor a mayor
+
+            //Llamamos a la funcion para que se muestren primero los numeros menores
+            mostrarMenores();
+
+            //Creamo variable booleana para comprobar si ya se ha mostrado la x o no
+            let estado = false;
+
+            //Para todos los elementos del array
+            historialIntentos.forEach(num => {
+                //Si ganas...
+                if (num === numeroAleatorio) {
+                    //Limpia el parrafo de numeros recordatorios
+                    npista.innerText = "";
+                    //Mostramos primero los numeros menores
+                    mostrarMenores();
+                    //En vez de la x ahora mostramos el numero que habia que adivinar en verde
+                    npista.innerHTML += "<span class='fin'>" + num + "</span>" + " ";
+                //Si el que tu has no coincide con el que hay que adivinar y la x aun no se ha escrito...
+                } else if (num != numeroAleatorio && !estado) {
+                    //Ponemos el estado en true para que no se muestren mas de una x
+                    estado = true;
+                    //Mostramos la x en negrita y negro
+                    npista.innerHTML += "<span>" + "x" + "</span>" + " ";
+                }
+            });
+
+            //Para todos los elementos del array
+            historialIntentos.forEach(num => {
+                //Si son mayores al que hay que adivinar mostramos tras la x con color azul
+                if (num > numeroAleatorio) {
+                    npista.innerHTML += "<span class='mayor'>" + num + "</span>" + " ";
+                }
+            });
+
+
+            //Si el numero introducido es igual y del mismo tipo que el numero aleatorio entonces...
+            if (Number(inputNumber.value) === numeroAleatorio) {
+                //Mostramos que has ganado
+                alert("GANASTE");
+                alert("Efectivamente " + inputNumber.value + " es igual a " + numeroAleatorio);
+                //Limpiamos el input
+                inputNumber.value = "";
+                //Felicitamos al usuario :D
+                pista.innerHTML = "<span>Felicidades :D</span>";
+                //Cambiamos la imagen a una carita sonriente
+                image.src = "./imagenes/sonrisa.png";
+                //Cambiamos el titulo a color verde tambien
+                cambiar.style.color = "green";
+                //Deshabilitar el boton de enviar para no poder seguir jugando
+                buttonEnviar.disabled = true;
+            //Si el numero introducido es mayor que el numero aleatorio entonces...
+            } else if (Number(inputNumber.value) > numeroAleatorio) {
+                //Mostramos mensaje diciendo eso como pista
+                pista.innerHTML = "Este numero es <span>mayor</span> al que tienes que adivinar. Intenta con uno <span>menor</span>.";
+                //Cambiamos la imagen a una flecha hacia abajo
+                image.src = "./imagenes/abajo.jpg";
+                //Limpiamos el input
+                inputNumber.value = "";
+                //Cambiamos el titulo a color azul tambien
+                cambiar.style.color = "blue";
+            //Si el numero introducido es menor que el numero aleatorio entonces...
+            } else if (Number(inputNumber.value) < numeroAleatorio) {
+                //Mostramos mensaje diciendo eso como pista
+                pista.innerHTML = "Este numero es <span>menor</span> al que tienes que adivinar. Intenta con uno <span>mayor</span>.";
+                //Cambiamos la imagen a una flecha hacia arriba
+                image.src = "./imagenes/arriba.jpg";
+                //Limpiamos el input
+                inputNumber.value = "";
+                //Cambiamos el titulo a rojo verde tambien
+                cambiar.style.color = "red";
+            //Si no es nada de eso (seguramente una letra, signo, etc.)...
+            } else {
+                //Recordamos amablemente que solo se pueden introducir numeros y limpiamos el input
+                alert("¿Acaso no sabes lo que es un numero o que?");
+                inputNumber.value = "";
+            }
+            
+            //Si el numero de intentos es menor de 10
+            if (intento < 10) {
+                //Aumentamos la cantidad de intentos
+                intento++;
+                //Lo mostramos
+                tries.innerText = intento;
+            //Sino...
+            } else {
+                //Lo avisamos con una alerta
+                alert("Ya no tienes mas intentos. Perdiste :(");
+                //Cambiamos la cara a triste
+                image.src = "./imagenes/triste.jpg";
+                //Borramos la pista
+                pista.innerText = ""
+                //Quitamos la funcion del boton para que el usuario no pueda continuar jugando
+                buttonEnviar.disabled = true;
+            }
         }
     }
 });
