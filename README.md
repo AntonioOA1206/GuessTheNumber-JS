@@ -56,6 +56,12 @@ git clone https://github.com/tu-usuario/Numberdle.git
 
 ---
 
+## Enlace para vista previa
+
+[numberdle](https://guess-the-number-js-six.vercel.app/)
+
+---
+
 ## Changelog
 
 ### [1.3] - 2026-03-18
