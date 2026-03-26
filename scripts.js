@@ -1,7 +1,7 @@
 //Funcion para mostrar los numeros menores que usaremos posteriormente
-function mostrarMenores() {
-    //Por cada elemento del array (ordenado) lo añade al parrafo de numeros recordatorios
-    historialIntentos.forEach(num => {
+function mostrarMenores(setDelArray) {
+    //Por cada elemento del set (ordenado) lo añade al parrafo de numeros recordatorios
+    setDelArray.forEach(num => {
         if (num < numeroAleatorio) {
             npista.innerHTML += "<span class='menor'>" + num + "</span>" + " ";
         }
@@ -56,11 +56,11 @@ npista = document.querySelector("#numeros");
 //Creamos el array (vacio) que vamos a usar
 let historialIntentos = [];
 
-
 //Creamos un evento tipo click para el boton1
 buttonEnviar.addEventListener("click", function(event) {
     //Si se introduce algo en el input entra en el if, en caso contrario no hace nada
     if (Number(inputNumber.value) != "") {
+        //Se controla que solo se introduzcan valores entre 0 y 100
         if (Number(inputNumber.value) > 100 || Number(inputNumber.value) < 0) {
             alert("Este numero es menor que 0 o mayor que 100. ¿Podrias leer bien las instrucciones?");
             //Limpiamos el input
@@ -96,20 +96,23 @@ buttonEnviar.addEventListener("click", function(event) {
             */
             historialIntentos.sort((a, b) => a - b); // de menor a mayor
 
-            //Llamamos a la funcion para que se muestren primero los numeros menores
-            mostrarMenores();
+            //Convertimos el array en un set para borrar duplicados. Se sobreescribira cada que se pulsa el boton
+            let setDelArray = new Set(historialIntentos);
+
+            //Llamamos a la funcion para que se muestren primero los numeros menores pasandole como parametro el set para que lo pueda usar
+            mostrarMenores(setDelArray);
 
             //Creamo variable booleana para comprobar si ya se ha mostrado la x o no
             let estado = false;
 
-            //Para todos los elementos del array
-            historialIntentos.forEach(num => {
+            //Para todos los elementos del set
+            setDelArray.forEach(num => {
                 //Si ganas...
                 if (num === numeroAleatorio) {
                     //Limpia el parrafo de numeros recordatorios
                     npista.innerText = "";
                     //Mostramos primero los numeros menores
-                    mostrarMenores();
+                    mostrarMenores(setDelArray);
                     //En vez de la x ahora mostramos el numero que habia que adivinar en verde
                     npista.innerHTML += "<span class='fin'>" + num + "</span>" + " ";
                 //Si el que tu has no coincide con el que hay que adivinar y la x aun no se ha escrito...
@@ -121,8 +124,8 @@ buttonEnviar.addEventListener("click", function(event) {
                 }
             });
 
-            //Para todos los elementos del array
-            historialIntentos.forEach(num => {
+            //Para todos los elementos del set
+            setDelArray.forEach(num => {
                 //Si son mayores al que hay que adivinar mostramos tras la x con color azul
                 if (num > numeroAleatorio) {
                     npista.innerHTML += "<span class='mayor'>" + num + "</span>" + " ";
