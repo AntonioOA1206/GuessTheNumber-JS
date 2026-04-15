@@ -197,15 +197,17 @@ buttonEnviar.addEventListener("click", function(event) {
 });
 
 //Recorremos el array
-ambosBotones.forEach (botonA => {
+ambosBotones.forEach (boton => {
     //Para cada boton creamos un evento de tipo mouseenter para que cuanto el raton se ponga sobre el boton el texto de este cambie a azul
-    botonA.addEventListener("mouseenter", function(event) {
-        botonA.style.color = "blue";                             
+    boton.addEventListener("mouseenter", function(event) {
+        boton.style.color = "blue";
+        boton.style.transform = "scale(1.1)";
     });
 
     //Para cada boton creamos un evento de tipo mouseleave para que cuanto el raton salga de encima del boton el texto de este cambie a azul
-    botonA.addEventListener("mouseleave", function(event) {
-        botonA.style.color = "black";                             
+    boton.addEventListener("mouseleave", function(event) {
+        boton.style.color = "black";
+        boton.style.transform = "scale(1)";
     });
 });
 
