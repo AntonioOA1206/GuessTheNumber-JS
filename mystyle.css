@@ -11,6 +11,10 @@ span {
     font-weight: bold;
 }
 
+button {
+    transition: 0.3s;
+}
+
 .parrafo {
     font-style: oblique;
 }
