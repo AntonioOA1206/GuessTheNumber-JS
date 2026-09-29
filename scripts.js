@@ -196,6 +196,13 @@ buttonEnviar.addEventListener("click", function(event) {
     }
 });
 
+//Permite enviar el numero pulsando Enter
+inputNumber.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        buttonEnviar.click();
+    }
+});
+
 //Recorremos el array
 ambosBotones.forEach (boton => {
     //Para cada boton creamos un evento de tipo mouseenter para que cuanto el raton se ponga sobre el boton el texto de este cambie a azul
