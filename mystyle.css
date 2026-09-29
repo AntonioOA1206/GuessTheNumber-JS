@@ -5,10 +5,14 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
 }
 
 img {
     border: 5px solid black;
+    max-width: 90%;
+    height: auto;
 }
 
 span {
@@ -25,6 +29,9 @@ button {
 
 #todo {
     text-align: center;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
 }
 
 .fin {
@@ -37,4 +44,48 @@ button {
 
 .menor {
     color: red;
+}
+
+
+/* 📱 Para móviles */
+@media (max-width: 600px) {
+
+    #todo {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .parrafo {
+        font-size: 16px;
+    }
+
+    input {
+        width: 90%;
+        max-width: 300px;
+        padding: 8px;
+        box-sizing: border-box;
+        margin: 5px;
+    }
+
+    button {
+        padding: 8px 12px;
+        margin: 5px;
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+
+    #pista {
+        font-size: 16px;
+    }
+
+    #numeros {
+        font-size: 16px;
+        overflow-wrap: break-word;
+    }
 }
