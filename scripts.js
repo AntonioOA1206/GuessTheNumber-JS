@@ -203,7 +203,7 @@ inputNumber.addEventListener("keydown", function(event) {
     }
 });
 
-//Recorremos el array
+//Recorremos el array de los botones
 ambosBotones.forEach (boton => {
     //Para cada boton creamos un evento de tipo mouseenter para que cuanto el raton se ponga sobre el boton el texto de este cambie a azul
     boton.addEventListener("mouseenter", function(event) {
